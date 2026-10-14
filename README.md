@@ -1,23 +1,10 @@
-# X3 Flight Remote — experimental Android starter
+# X3Remote
 
-Open folder in Android Studio and build APK (Build > Build APK(s)). Requires Android 8+.
+Initial Android UI prototype for Insta360 X3.
 
-## Implemented
-- BLE scan and connect to an advertising X3 device
-- GATT BE80/BE81/BE82 transport, subscribe to notifications
-- Send Header16 start/stop/status request packets
-- Foreground connectedDevice service and persistent notification
-- Volume +/− controls while the app is foreground
-- Raw HEX camera replies for diagnosing the actual firmware
+**This version does not connect to or control the camera yet.** The buttons are deliberately disabled. BLE communication, recording commands, battery status, volume-button shortcuts, and background service are planned for later versions.
 
-## NOT YET IMPLEMENTED / NOT VERIFIED
-- Tested recording control on a real X3 (hardware unavailable)
-- Camera authorization/pairing handshake and response parsing
-- Reliable recording confirmation, battery decoding, auto reconnect/backoff
-- Global volume interception (Android restricts it); background notification actions
-- Robust command queue and retries
+## Build APK
+Push all files (including `.github/workflows/android.yml`) to the `main` branch. Go to **Actions → Android APK → latest successful run → Artifacts → X3Remote-debug-apk**. Download and extract the artifact ZIP to obtain `app-debug.apk`.
 
-Do not rely on this version during flight. Test with a camera on a desk and verify the recording indicator and actual saved files. Do not repeatedly send commands if camera status is unknown.
-
-Protocol reference: https://github.com/xaionaro-go/insta360ctl
-Check upstream repository license and permissions before reusing upstream source; this project independently implements the publicly documented packet framing.
+Requires Android 8.0 or later. GitHub Actions builds with Gradle 8.9, Android Gradle Plugin 8.7.3 and JDK 17. This project has not been build-tested locally.
